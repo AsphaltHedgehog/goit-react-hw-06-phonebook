@@ -1,9 +1,9 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = [
-  { name: 'asdad', number: 555, id: '213asda'},
-  { name: 'asdadasd', number: 2141414, id: 'dsadadas'},
-  { name: 'Serghii', number: 2321, id: 'sadasdasd'},
+  { name: 'Vazdo', number: 123133123123, id: '213asda'},
+  { name: 'Alex', number: 312313123, id: 'dsadadas'},
+  { name: 'Serghii', number: 312313131321, id: 'sadasdasd'},
   
 ];
 
@@ -13,7 +13,7 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer: (state, action) => {
-        return [...state, action.payload]
+        state.push(action.payload)
       },
       prepare: (info) => {
         return {
