@@ -11,9 +11,6 @@ import {getStatusFilter} from "redux/selectors";
 function Filter() {
   const filter = useSelector(getStatusFilter);
   const dispatch = useDispatch()
-
-  console.log(filter);
-
   return (
     <input
       type="text"
