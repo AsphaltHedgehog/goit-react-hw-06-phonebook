@@ -1,25 +1,36 @@
 import { useState } from "react";
 
-import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+
+import { addContact } from '../../../redux/actions';
+
 
 import css from './contactform.module.css'
 
-function ContactsForm({onSubmit}) {
+function ContactsForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
+  const dispatch = useDispatch();
+
+  const contacts = useSelector(state => state.contacts);
 
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    if (contacts.find((contact) => contact.name === name || contact.number === number)) {
+      alert('this contact already exist');
+      return;
+    }
 
     if (name.trim() === '' || number.trim() === '') {
       alert('Enter a name and number');
       reset()
       return;
     };
-    
-    onSubmit({name, number});
+
+    dispatch(addContact({name, number}));
 
     reset();
   };
@@ -64,10 +75,6 @@ function ContactsForm({onSubmit}) {
   );
 };
 
-
-ContactsForm.propTypes = {
-  onSubmit: PropTypes.func
-}
 
 
 
